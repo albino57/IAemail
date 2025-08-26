@@ -1,0 +1,4 @@
+19:22 26/08/2025
+
+Fluxo da Aplicação:
+Frontend (Vercel) -> Backend (Flask em Railway) -> API DeepSeek -> Backend -> Frontend

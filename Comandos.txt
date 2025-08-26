@@ -1,0 +1,9 @@
+20:14 26/08/2025
+
+Comandos para rodar backend no terminal do laragon:
+	C:\laragon\www\IAemail\Backend
+	(venv) λ python app.py
+
+Comandos para rodar frontend no terminal do OS Windows:
+	Abrindo o terminal no diretório C:\laragon\www\IAemail
+	python -m http.server 8000

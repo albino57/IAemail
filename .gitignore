@@ -1,0 +1,11 @@
+# Arquivo: C:\laragon\www\IAemail\.gitignore
+
+# Ignora a pasta do ambiente virtual Python
+Backend/venv/
+
+# Ignora arquivos de ambiente com chaves secretas!
+Backend/.env
+
+# Ignora cache do Python
+__pycache__/
+*.pyc

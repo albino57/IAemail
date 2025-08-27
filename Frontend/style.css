@@ -1,0 +1,94 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /*Tem controle de quem alguma dessas fontes exista no OS e seja usada*/
+    background-color: #1c3e8f;
+    margin: 0; /*Remove todas as margens padrão que o navegador coloca automaticamente*/
+    padding: 20px;
+    /*↓↓Conjunto que centraliza o conteúdo no centro em qualquer tamanho de tela↓↓*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /*↑↑-----------------------↑↑*/
+}
+
+.container {
+    background: rgb(245, 245, 245);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.500);
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    color: #2563eb;
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none; /*Classe que oculta o resultado da chamada #result lá no HTML*/
+}
+
+#result {
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #dfdfdf;
+    border-left: 4px solid #2563eb;
+}
+
+/*Container dos botões*/
+.button-container {
+    display: flex;         /*Transforma o container em um flexbox*/
+    gap: 10px;             /*Adiciona um espaçamento entre os botões*/
+    margin-bottom: 1rem;   /*Mantém a margem abaixo dos botões*/
+    justify-content: center; /*Centraliza os botões tornando a aplicação bonita*/
+}
+
+.button-container button { /*Faz o alinhamento dos botões*/
+    flex: 1;               /*Faz cada botão crescer igualmente para preencher o espaço*/
+    width: auto;           /*Sobrescreve a largura de 100% que tínhamos antes*/
+    max-width: 200px;      /*Controla o tamaho do botão para não ficar muito grande com tela larga*/
+    padding: 12px 8px;
+}
+
+button {
+    background-color: #2563eb;
+    color: rgb(245, 245, 245);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/*Estilo para telas muito pequenas 'celulares'*/
+@media (max-width: 410px) {
+    .button-container {
+        flex-direction: column; /*Muda a direção do flex para coluna (empilha os botões)*/
+        align-items: center;    /*Centraliza os botões quando empilhados*/
+    }
+
+    .button-container button {
+        max-width: 200px; /*Em telas pequenas, o botão tem o mesmo tamanho da tela grande*/
+        width: 100%;      /*Limite de padding do container*/
+    }
+}

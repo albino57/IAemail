@@ -1,0 +1,32 @@
+<!DOCTYPE html> <!--Aqui declara para o navegador que estou usando HTML5-->
+<html lang="pt-BR"> <!--Aqui é declaro o idioma do documento-->
+
+<head> <!--Aqui é onde instruções e configurações são feitas para o Navegador-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Reponsividade para celular-->
+    <title>IAemail</title>
+    <link rel="stylesheet" href="style.css"> <!--Conecta com o arquivo CSS-->
+</head>
+<body>
+    <div class="container"> <!--Cria uma conteiner organizador para que possa estilizá-la lá no CSS-->
+        <h1>IAemail 📧</h1>
+        <p>Cole o texto do e-mail abaixo e descubra se é <strong>Produtivo</strong> ou <strong>Improdutivo</strong>.</p>
+        
+        <textarea id="emailText" placeholder="Escreva seu e-mail aqui..."></textarea>
+
+        <div class="button-container"> <!--Divisão dos botões principais-->
+            <button>Carregar Arquivo</button>
+            <button onclick="analyzeEmail()">Enviar E-mail</button>
+        </div>
+
+        <div id="result" class="hidden"> <!--Aqui faz uma chamada em result no CSS, mas fica oculto pela classe hidden até o JS liberar-->
+            <h2>Resultado:</h2>
+            <p><strong>Categoria:</strong> <span id="category"></span></p>
+            <p><strong>Resposta Sugerida:</strong></p>
+            <p id="response"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!--Carrega o Arquivo do Script-->
+</body>
+</html>

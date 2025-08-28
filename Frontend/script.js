@@ -4,23 +4,23 @@ async function analyzeEmail() {
     const categorySpan = document.getElementById('category');
     const responseP = document.getElementById('response');
 
-    // Limpa resultados anteriores e mostra loading
+    // Limpa resultados anteriores e mostra loading.
     categorySpan.textContent = '';
     responseP.textContent = 'Analisando...';
     resultDiv.classList.remove('hidden');
 
-    try {
+    try { //Envia o texto para o backend
         const response = await fetch('http://localhost:5000/analyze', {
-            method: 'POST',
+            method: 'POST',     //Método HTTP POST (para enviar dados).
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json', //Avisa que está mandando JSON.
             },
-            body: JSON.stringify({ text: emailText })
+            body: JSON.stringify({ text: emailText }) //Transforma o texto em JSON.
         });
 
-        const data = await response.json();
+        const data = await response.json(); //Transforma a resposta JSON em um objeto JS e espera com o 'await' a resposta.
 
-        if (response.ok) {
+        if (response.ok) { //Se a resposta for ok, atualiza.
             categorySpan.textContent = data.category;
             responseP.textContent = data.response;
         } else {

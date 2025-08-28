@@ -1,4 +1,7 @@
 19:22 26/08/2025
 
 Fluxo da Aplicação:
-Frontend (Vercel) -> Backend (Flask em Railway) -> API DeepSeek -> Backend -> Frontend
+
+Frontend (digita texto) -> Seu Backend -> DeepSeek -> Seu Backend -> Frontend (mostra resultado).
+
+HTML e CSS me mostram o frontend > o frontend JS se comunica com o backend Python (flask) > backend Python (flask) se comunica com a API > API se comunica com meu backend Python (flask) > backend Python (flask) se comunica com meu frontend JS > JS começa a me mostrar junto com o HTML e CSS.

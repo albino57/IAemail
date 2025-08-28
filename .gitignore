@@ -2,10 +2,12 @@
 
 # Ignora a pasta do ambiente virtual Python
 Backend/venv/
+PDFServicesSDK-PythonSamples
 
 # Ignora arquivos de ambiente com chaves secretas!
 Backend/.env
 Tutorial.txt
+
 # Ignora cache do Python
 __pycache__/
 *.pyc

@@ -34,21 +34,52 @@ async function analyzeEmail() {
     }
 }
 
+//↓↓Função que carrega TXT/PDF e envia para o backend processar↓↓
 async function handleFileUpload(files) {
     if (files.length === 0) return;
-
     const file = files[0];
-    const reader = new FileReader();
 
-    reader.onload = function(e) {
-        const fileContent = e.target.result;
-        //Usa o conteúdo do arquivo como se fosse o texto digitado!
-        document.getElementById('emailText').value = fileContent;
-        
-        //Mostrar um alerta de sucesso!
-        alert(`Arquivo "${file.name}" carregado com sucesso!".`);
-    };
+    //Prepara o FormData
+    const formData = new FormData();
+    formData.append('file', file);
 
-    reader.readAsText(file); // Lê arquivos de texto (.txt)
-    document.getElementById('fileInput').value = ''; //Permite o usuário carregar o arquivo de novo caso erre.
+    //Mostra estado de "carregando" para o usuário
+    const resultDiv = document.getElementById('result');
+    const categorySpan = document.getElementById('category');
+    const responseP = document.getElementById('response');
+    
+    resultDiv.classList.remove('hidden');
+    categorySpan.textContent = 'Analisando...';
+    responseP.textContent = 'Processando seu arquivo...';
+
+    try {
+        //Envia o arquivo para o backend processar
+        const response = await fetch('http://localhost:5000/analyze_file', {
+            method: 'POST',
+            body: formData   // Não setar 'Content-Type'! O browser faz isso automaticamente.
+        });
+        const data = await response.json();
+
+        //Atualiza a interface com a resposta
+        if (response.ok) {
+            if (data.text) {
+                // Se veio só o texto extraído (PDF/TXT)
+                document.getElementById('emailText').value = data.text;
+                categorySpan.textContent = 'Texto extraído!';
+                responseP.textContent = 'Edite se necessário e clique em "Enviar E-mail".';
+            } else if (data.category && data.response) {
+                // Se já veio análise completa (formato antigo)
+                categorySpan.textContent = data.category;
+                responseP.textContent = data.response;
+            }
+        } else {
+            throw new Error(data.error || 'Erro na análise do arquivo.');
+        }
+    } catch (error) {
+        console.error('Erro no upload:', error);
+        categorySpan.textContent = 'Erro';
+        responseP.textContent = 'Falha ao processar o arquivo.';
+    }
+    //Permite recarregar o mesmo arquivo
+    document.getElementById('fileInput').value = '';
 }

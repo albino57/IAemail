@@ -1,0 +1,75 @@
+#Email-1
+Olá, boa tarde. 
+
+Eu gostaria de esclarecer uma dúvida, eu gostaria de saber quando meu plano standart renova.
+
+att, obrigado.
+--------------
+Resposta:
+Categoria: Produtivo
+
+Resposta Sugerida:
+
+Recebemos sua solicitação. Em breve, um especialista entrará em contato para informar a data de renovação do seu plano. Obrigado!
+
+--------------------------------------------------------------------------------------------
+
+#Email-2
+Oi, boa madrugada.
+Eu estou enfrentando problemas para fazer login agora, está dizendo que meu usuário não tem permissão para logar. Isso é estranho porque eu comprei a conta PRO.
+Poderiam me ajudar nisso?
+Obrigado, até mais.
+--------------
+Resposta:
+Categoria: Produtivo
+
+Resposta Sugerida:
+
+Recebemos sua solicitação e já estamos investigando o problema de login. Em breve entraremos em contato com uma solução. Agradecemos a sua paciência.
+
+--------------------------------------------------------------------------------------------
+
+#Email-3
+Bom diaaa :D. 
+
+Quero muito agradecer de coração a ajuda da equipe em resolver meu problema de login rapidamente. 
+
+Gratidão!
+
+Abraço e beijos a todos.
+--------------
+Resposta:
+Categoria: Improdutivo
+
+Resposta Sugerida:
+
+Recebido e agradecido! Ficamos felizes em ajudar. Abraços!
+
+--------------------------------------------------------------------------------------------
+
+#Email-4
+Olá, boa noite.
+Eu gostaria de compartilhar uma ideia de possível melhoria. Atualmente o relógio do site atualiza de minuto em minuto mesmo sendo hora completa com segundos. Seria legal atualizar todo segundo se possível.
+Abraços.
+--------------
+Resposta:
+Categoria: Produtivo
+
+Resposta Sugerida:
+
+Olá! Agradeço a sua sugestão. Vamos analisar a viabilidade dessa melhoria. Abraços!
+
+--------------------------------------------------------------------------------------------
+
+#Email-5
+Bom dia. Eu tenho uma sugestão de uma melhoria muito importante.
+Eu estava fazendo alguns pentest na aplicação de vocês e percebi que consegui me conectar pela porta :7896.
+Tomem cuidado, pois consegui acessar arquivos importantes da empresa.
+Um abraço forte!
+--------------
+Resposta:
+Categoria: Produtivo
+
+Resposta Sugerida:
+
+Agradecemos a sua valiosa contribuição e o alerta sobre a porta 7896. Já estamos investigando e tomando as medidas necessárias para corrigir essa vulnerabilidade. Um abraço!

@@ -1,9 +1,9 @@
 # Arquivo: backend/app.py
 from flask import Flask, request, jsonify
-from flask_cors import CORS
-import requests
+from flask_cors import CORS #comunicação entre domínios distintos
+import requests #biblioteca do Python para fazer requisições HTTP
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv #biblioteca que lê e carrega variáveis em arquivo .env (segurança)
 
 load_dotenv()
 
@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)  #Isso é crucial para o frontend se comunicar com o backend.
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")     #Variável recebe a chave API Gemini
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY") #Variável recebe a chave API DeepSeek
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY") 
 
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 DEEPSEEK_URL = "https://api.deepseek.com/v1/chat/completions"
@@ -87,53 +87,62 @@ def query_ai(prompt, max_tokens=150):
     print("Gemini falhou. Tentando DeepSeek...")
     return query_deepseek(prompt, max_tokens)
 
-@app.route('/')
+@app.route('/') #Função para saber se a rota básica está funcionando.
 def home():
     return "🔥Backend da IAemail está funcionando🔥"
 
 # NOVA ROTA PARA ANALISAR O EMAIL
 @app.route('/analyze', methods=['POST'])  # Aceita apenas POST.
 
+#↓↓↓-Função da comunicação entre o frontend JS, python e API IA-----------------------------------↓↓↓
 def analyze_email():
     data = request.get_json() #Pega o JSON recebido e transforma em um dicionário Python
-    email_text = data.get('text', '')  # Extrai o valor da chave 'text' do dicionário e não tiver 'text', retorna string vazio.
+    email_text = data.get('text', '')  # Extrai o valor da chave 'text' do dicionário e se não tiver 'text', retorna string vazio.
 
     #Validar se o texto não está vazio
     if not email_text.strip():
         # Se estiver vazio, retorna um erro JSON
         return jsonify({'error': 'O texto do e-mail não pode estar vazio.'}), 400
 
-    #Prompt para CLASSIFICAR o e-mail
-    classification_prompt = f"""
-    Classifique o seguinte e-mail como 'Produtivo' ou 'Improdutivo'. 
-    Responda APENAS com uma palavra: 'Produtivo' ou 'Improdutivo'.
+    #Prompt para o e-mail
+    unified_prompt = f"""
+    Classifique o e-mail abaixo como 'Produtivo' ou 'Improdutivo' e gere uma resposta automática curta e adequada em português do Brasil.
+
+    Retorne APENAS no seguinte formato, sem comentários extras:
+    Categoria: [Produtivo/Improdutivo]
+    Resposta: [sua resposta aqui]
 
     E-mail: \"\"\"{email_text}\"\"\"
-    Classificação:
     """
 
-    category = query_ai(classification_prompt, max_tokens=10)
+    #Faz apenas uma chamada para a IA
+    ai_response = query_ai(unified_prompt, max_tokens=200)
 
-    #Prompt para GERAR uma resposta baseada na classificação
-    response_prompt = f"""
-    Este e-mail foi classificado como '{category}'. Gere uma resposta automática, curta e adequada em português do Brasil.
-
-    E-mail: \"\"\"{email_text}\"\"\"
-
-    Resposta:
-    """
-
-    generated_response = query_ai(response_prompt, max_tokens=150)
-
-    #Verifica se a API retornou algo
-    if category is None or generated_response is None:
+    #Extraindo a categoria e a resposta do texto que voltou
+    if ai_response:
+        
+        #Divide a resposta em linhas
+        lines = ai_response.split('\n')
+        category = None
+        response_text = None
+    
+        for line in lines:
+            if line.startswith('Categoria:'): #Se achar 'Categoria:'
+                category = line.replace('Categoria:', '').strip() #Aqui lê a palavra depois da Categoria
+            elif line.startswith('Resposta:'):
+                response_text = line.replace('Resposta:', '').strip()
+    
+        #Verifica se encontrou ambas as respostas e retorna para o JS
+        if category and response_text:
+            return jsonify({
+                'category': category,
+                'response': response_text
+            })
+        else:
+            return jsonify({'error': 'Não foi possível processar a resposta da IA.'}), 500
+    else:
         return jsonify({'error': 'Erro ao processar sua solicitação com a IA.'}), 500
-
-    #Retorna a resposta real da IA!
-    return jsonify({
-        'category': category,
-        'response': generated_response
-    })
+#↑↑↑-Função da comunicação entre o frontend JS, python e API IA-----------------------------------↑↑↑
 
 if __name__ == '__main__':
     app.run(debug=True)

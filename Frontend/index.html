@@ -11,10 +11,12 @@
     <div class="container"> <!--Cria uma conteiner organizador para que possa estilizá-la lá no CSS-->
         <h1>IAemail 📧</h1>
         
-        <textarea id="emailText" placeholder="Escreva seu e-mail aqui..."></textarea>
+        <textarea id="emailText" placeholder="Escreva seu e-mail aqui e/ou carregue um arquivo txt/pdf."></textarea>
 
         <div class="button-container"> <!--Divisão dos botões principais-->
-            <button>Carregar Arquivo</button>
+            <button onclick="document.getElementById('fileInput').click()">Carregar Arquivo</button>
+            <!--Abre o browser para selecionar o arquivo-->
+            <input type="file" id="fileInput" accept=".txt,.pdf" style="display: none;" onchange="handleFileUpload(this.files)">
             <button onclick="analyzeEmail()">Enviar E-mail</button>
         </div>
 

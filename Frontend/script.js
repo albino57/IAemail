@@ -33,3 +33,22 @@ async function analyzeEmail() {
         responseP.textContent = 'Não foi possível analisar o e-mail. Tente novamente.';
     }
 }
+
+async function handleFileUpload(files) {
+    if (files.length === 0) return;
+
+    const file = files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const fileContent = e.target.result;
+        //Usa o conteúdo do arquivo como se fosse o texto digitado!
+        document.getElementById('emailText').value = fileContent;
+        
+        //Mostrar um alerta de sucesso!
+        alert(`Arquivo "${file.name}" carregado com sucesso!".`);
+    };
+
+    reader.readAsText(file); // Lê arquivos de texto (.txt)
+    document.getElementById('fileInput').value = ''; //Permite o usuário carregar o arquivo de novo caso erre.
+}

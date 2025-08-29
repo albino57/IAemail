@@ -54,7 +54,7 @@ async function handleFileUpload(files) {
 
     try {
         //Envia o arquivo para o backend processar
-        const response = await fetch('http://localhost:5000/analyze_file', {
+        const response = await fetch('https://huggingface.co/spaces/RafaelAlbinoIA/iaemail-huggingface', {
             method: 'POST',
             body: formData   // Não setar 'Content-Type'! O browser faz isso automaticamente.
         });

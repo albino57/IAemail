@@ -10,7 +10,7 @@ async function analyzeEmail() {
     resultDiv.classList.remove('hidden');
 
     try { //Envia o texto para o backend
-        const response = await fetch('http://localhost:5000/analyze', {
+        const response = await fetch('https://huggingface.co/spaces/RafaelAlbinoIA/iaemail-huggingface', {
             method: 'POST',     //Método HTTP POST (para enviar dados).
             headers: {
                 'Content-Type': 'application/json', //Avisa que está mandando JSON.

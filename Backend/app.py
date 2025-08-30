@@ -8,8 +8,6 @@ from dotenv import load_dotenv #biblioteca que lê e carrega variáveis em arqui
 #↓↓Bibliotecas da ADOBE - conversão PDF↓↓
 from adobe.pdfservices.operation.auth.service_principal_credentials import ServicePrincipalCredentials
 from adobe.pdfservices.operation.pdf_services_media_type import PDFServicesMediaType
-from adobe.pdfservices.operation.io.cloud_asset import CloudAsset
-from adobe.pdfservices.operation.io.stream_asset import StreamAsset
 from adobe.pdfservices.operation.pdf_services import PDFServices
 from adobe.pdfservices.operation.pdfjobs.jobs.extract_pdf_job import ExtractPDFJob
 from adobe.pdfservices.operation.pdfjobs.params.extract_pdf.extract_element_type import ExtractElementType
@@ -19,10 +17,16 @@ from adobe.pdfservices.operation.pdfjobs.result.extract_pdf_result import Extrac
 import zipfile
 import json
 
-load_dotenv()
-
 app = Flask(__name__)
-CORS(app)  #Isso é crucial para o frontend se comunicar com o backend.
+
+# Configure CORS para permitir seu frontend no Vercel
+CORS(app, origins=[
+    "https://iaemail.vercel.app",
+    "http://localhost:5000",  # para desenvolvimento local
+    "https://rafaelalbinoia-iaemail-huggingface.hf.space"
+])
+
+load_dotenv()
 
 #↓↓-Função para ler ZIP-↓↓
 def extract_text_from_zip(zip_content):
@@ -262,4 +266,4 @@ def analyze_email():
 #↑↑-Função da comunicação entre o frontend JS, python e API IA-----------------------------------↑↑
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=7860)

@@ -1,0 +1,110 @@
+21:12 26/08/2025
+
+↓ Tipos de commits ↓
+
+feat:-------Nova funcionalidade (feature). Use quando adicionar algo novo que não existia.
+style:------Mudanças visuais que não alteram lógica (cores, fontes, espaçamento, formatação).
+fix:--------Correção de bugs ou errors.
+docs:-------Mudanças na documentação (como o README.md).
+chore:------Tarefas de manutenção que não alteram lógica nem funcionalidade (atualizar pacotes, configurar CI).
+refactor:---Mudanças no código que não adicionam funcionalidade nem consertam bugs, apenas melhoram a estrutura ou legibilidade.
+build:------Mudanças em scripts de build, dependências ou ferramentas (ex: Webpack, Docker).build: adiciona Dockerfile para deploy.
+ci:---------Mudanças em configuração de Integração Contínua (GitHub Actions, GitLab CI).
+perf:-------Melhorias de performance (deixar o código mais rápido ou eficiente).
+test:-------Adição ou modificação de testes automatizados (não altera funcionalidade).
+revert:-----Reverte um commit anterior.
+
+ex: git commit -m "fix: Bug consertado no botão Aplicar"
+
+↑------------------↑
+
+↓ Passo rápidos de commits ↓
+
+	git status (para ver o que mudou).
+
+	git add . (para preparar tudo para o commit).
+	
+	git add arquivo1 (prepara o arquivo1 para o commit).
+
+	git commit -m "" (para registrar a versão).
+
+	git push (para enviar para o GitHub e deixar tudo salvo na nuvem).
+	
+	git commit -a -m "": É um atalho prático para quando você só modificou arquivos que já estavam no git e quer commitar tudo de uma vez.
+
+↑--------------------------↑
+
+
+↓↓ Passos completos desde a primeira conexão ↓↓
+
+🎯 PASSO 1: Preparar o Repositório GitHub
+Objetivo: Criar um repositório no GitHub e conectar com a pasta do seu projeto.
+
+Acesse: github.com e faça login.
+
+Clique em "New repository".
+
+Nome do repositório: IAemail (ou o nome que você quiser).
+
+Deixe como Público.
+
+NÃO marque "Initialize this repository with a README". (Você já tem os arquivos localmente).
+
+Clique em Create repository.
+
+
+🎯 PASSO 2: Configurar o Git Localmente
+No terminal do LARAGON, na pasta do seu projeto (C:\laragon\www\IAemail):
+
+Execute estes comandos UM POR UM:
+# Inicializa o Git na sua pasta
+	git init
+
+# Configura seu usuário (use o mesmo email e nome do seu GitHub)
+	git config user.email "seu@email.com"
+	git config user.name "Seu Nome"
+
+# Conecta seu repositório local ao remoto do GitHub
+	git remote add origin https://github.com/SEU_USUARIO/IAemail.git
+# (Substitua SEU_USUARIO pelo seu nome de usuário do GitHub)
+
+
+PASSO 3: O Arquivo .gitignore (IMPORTANTE)
+Crie um arquivo chamado .gitignore na pasta C:\laragon\www\IAemail e cole isto dentro:
+
+# Arquivo: C:\laragon\www\IAemail\.gitignore
+
+# Ignora a pasta do ambiente virtual Python
+backend/venv/
+
+# Ignora arquivos de ambiente com chaves secretas!
+backend/.env
+
+# Ignora cache do Python
+__pycache__/
+*.pyc
+
+Isso vai evitar que você suba acidentalmente sua chave da API ou outras coisas sensíveis.
+
+
+🎯 PASSO 4: Primeiro Commit e Push
+No terminal do Laragon, na pasta C:\laragon\www\IAemail, execute:
+
+# Adiciona TODAS as alterações (exceto o que está no .gitignore)
+git add .
+
+# Confirma as alterações com uma mensagem
+git commit -m "Primeiro commit: Subindo estrutura do projeto IAemail"
+
+# Envia tudo para o repositório no GitHub
+git push -u origin main
+
+Algumas coisinhas que podem acontecer:
+
+	Se der erro no git push falando que não encontrou main, tente:
+
+	git push -u origin master
+
+(O GitHub às vezes cria com main e às vezes com master).
+
+Ele vai pedir seu nome de usuário e senha do GitHub. Na senha, pode ser que você precise usar um token de acesso pessoal em vez da sua senha normal.

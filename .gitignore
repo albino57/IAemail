@@ -6,7 +6,6 @@ PDFServicesSDK-PythonSamples
 
 # Ignora arquivos de ambiente com chaves secretas!
 Backend/.env
-Tutorial.txt
 
 # Ignora cache do Python
 __pycache__/

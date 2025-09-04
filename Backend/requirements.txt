@@ -4,3 +4,4 @@ requests==2.32.3
 python-dotenv==1.0.0
 pdfservices-sdk==4.2.0
 google-cloud-documentai==3.5.0
+gunicorn

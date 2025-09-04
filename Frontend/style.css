@@ -50,45 +50,91 @@ textarea {
 }
 
 /*Container dos botões*/
-.button-container {
-    display: flex;         /*Transforma o container em um flexbox*/
-    gap: 10px;             /*Adiciona um espaçamento entre os botões*/
-    margin-bottom: 1rem;   /*Mantém a margem abaixo dos botões*/
+.button-container{
+    display: flex;           /*Transforma o container em um flexbox*/
+    gap: 10px;               /*Adiciona um espaçamento entre os botões*/
+    margin-bottom: 1rem;     /*Mantém a margem abaixo dos botões*/
     justify-content: center; /*Centraliza os botões tornando a aplicação bonita*/
+    align-items: center;     
 }
 
-.button-container button { /*Faz o alinhamento dos botões*/
-    flex: 1;               /*Faz cada botão crescer igualmente para preencher o espaço*/
-    width: auto;           /*Sobrescreve a largura de 100% que tínhamos antes*/
-    max-width: 200px;      /*Controla o tamaho do botão para não ficar muito grande com tela larga*/
+.button-container .main-btn{ /*Faz o alinhamento dos botões*/
+    flex: 1;                 /*Faz cada botão crescer igualmente para preencher o espaço*/
+    width: auto;             /*Sobrescreve a largura de 100% que tínhamos antes*/
+    max-width: 200px;        /*Controla o tamaho do botão para não ficar muito grande com tela larga*/
     padding: 12px 8px;
 }
 
-button {
+.main-btn {
     background-color: #2563eb;
     color: rgb(245, 245, 245);
     border: none;
-    padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
     font-size: 16px;
-    width: 100%;
     transition: background-color 0.3s;
 }
 
-button:hover {
+.main-btn:hover {
     background-color: #1d4ed8;
 }
 
+/* Botão de emoji pequeno */
+.apagar-btn {
+    width: auto;
+    max-width: 60px;
+    max-height: 60px;
+    flex: 0 1 auto;
+    padding: 8px 12px;
+    font-size: 20px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 50%; /*Faz o botão ser redondo*/ 
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    transition: all 0.2s ease;
+}
+
+.apagar-btn:hover {
+    background-color: #eb2525;
+    transform: scale(1.1);
+}
+
 /*Estilo para telas muito pequenas 'celulares'*/
-@media (max-width: 410px) {
+@media (max-width: 470px) {
     .button-container {
         flex-direction: column; /*Muda a direção do flex para coluna (empilha os botões)*/
         align-items: center;    /*Centraliza os botões quando empilhados*/
     }
 
-    .button-container button {
+    .button-container .main-btn {
         max-width: 200px; /*Em telas pequenas, o botão tem o mesmo tamanho da tela grande*/
         width: 100%;      /*Limite de padding do container*/
     }
+
+    .apagar-btn {
+    max-width: 50px ;
+    padding: 8px 12px ;
+    font-size: 18px ;
+    }
+
+}
+
+/*Estilo para os botões principais quando estiverem desativados*/
+.main-btn:disabled,
+.apagar-btn:disabled {
+    background-color: #9ca3af; 
+    color: #e5e7eb;            
+    cursor: not-allowed; /*O cursor muda para o ícone de "proibido" */
+}
+
+/*Garante que o efeito :hover não seja aplicado quando o botão está desativado*/
+.main-btn:disabled:hover {
+    background-color: #9ca3af; /* Mantém a mesma cor cinza do estado desativado */
+}
+
+.apagar-btn:disabled:hover {
+    background-color: #9ca3af; 
+    transform: none;             /* Remove o efeito de "crescer" (scale) */
 }

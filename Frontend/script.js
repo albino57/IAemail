@@ -10,7 +10,7 @@ async function analyzeEmail() {
     resultDiv.classList.remove('hidden');
 
     try { //Envia o texto para o backend
-        const response = await fetch('https://rafaelalbinoia-iaemail-huggingface.hf.space/analyze', {
+        const response = await fetch('http://localhost:5000/analyze', {
             method: 'POST',     //Método HTTP POST (para enviar dados).
             headers: {
                 'Content-Type': 'application/json', //Avisa que está mandando JSON.
@@ -54,7 +54,7 @@ async function handleFileUpload(files) {
 
     try {
         //Envia o arquivo para o backend processar
-        const response = await fetch('https://rafaelalbinoia-iaemail-huggingface.hf.space/analyze_file', {
+        const response = await fetch('http://localhost:5000/analyze_file', {
             method: 'POST',
             body: formData   // Não setar 'Content-Type'! O browser faz isso automaticamente.
         });
@@ -80,6 +80,33 @@ async function handleFileUpload(files) {
         categorySpan.textContent = 'Erro';
         responseP.textContent = 'Falha ao processar o arquivo.';
     }
-    //Permite recarregar o mesmo arquivo
-    document.getElementById('fileInput').value = '';
+    
+    document.getElementById('fileInput').value = ''; //Permite recarregar o mesmo arquivo
+    document.getElementById('enviarBtn').disabled = false; //Caso carregue algum arquivo, garante que o botão fique liberado.
+    document.getElementById('apagarBtn').disabled = false;
 }
+
+//↓↓↓-Código da função de desabilitar/habilitar botões-↓↓↓
+const botaoApagar = document.getElementById('apagarBtn');
+const textarea = document.getElementById('emailText');
+const enviarBtn = document.getElementById('enviarBtn');
+const resultDiv = document.getElementById('result'); //permite fazer hidden da div id="result" no HTML
+
+botaoApagar.addEventListener('click', function() {
+    textarea.value = '';
+    enviarBtn.disabled = true;
+    botaoApagar.disabled = true;
+    resultDiv.classList.add('hidden'); //faz hidden (Oculta) da div id="result" no HTML
+});
+
+textarea.addEventListener('input', function() { // Função que desativa os botões 'enviar mensagem' e 'apagar' (X)
+
+    if (textarea.value.trim() !== ''){
+        enviarBtn.disabled = false;
+        botaoApagar.disabled = false;
+    }
+    else {
+        enviarBtn.disabled = true;
+        botaoApagar.disabled = true;
+    }
+});

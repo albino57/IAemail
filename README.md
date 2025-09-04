@@ -3,8 +3,11 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Flask](https://img.shields.io/badge/Flask-3.0-green)
 ![IA](https://img.shields.io/badge/IA-Gemini%2BDeepSeek-orange)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 Uma aplicação web que utiliza Inteligência Artificial para classificar e-mails em **Produtivos** ou **Improdutivos** e gerar respostas automáticas contextualizadas.
+
+### 🌐 Acesse a Aplicação: [iaemail.vercel.app](https://iaemail.vercel.app/)
 
 ## 🚀 Funcionalidades
 
@@ -31,26 +34,39 @@ Uma aplicação web que utiliza Inteligência Artificial para classificar e-mail
 - Conta no [Adobe PDF Services](https://www.adobe.io/apis/documentcloud/dcsdk/pdf-services.html)
 
 ### Instalação
-```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/IAemail.git
-cd IAemail
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/albino57/IAemail.git
+    cd IAemail
+    ```
+2.  **Configure o Backend:**
+    ```bash
+    cd Backend
+    # Crie e ative o ambiente virtual
+    python -m venv venv
+    .\venv\Scripts\activate
+    # Instale as dependências
+    pip install -r requirements.txt
+    # Configure suas chaves de API
+    cp .env.example .env 
+    ```
+    Agora, abra o arquivo `.env` e preencha com suas chaves.
 
-# Backend
-cd Backend
-python -m venv venv
-.\venv\Scripts\activate
-pip install -r requirements.txt
+3.  **Configure o Frontend:**
+    * Verifique se a URL da API no arquivo `Frontend/script.js` está apontando para `http://localhost:7860`.
 
-# Configure as variáveis de ambiente no arquivo .env:
-# GEMINI_API_KEY=sua_chave_gemini
-# DEEPSEEK_API_KEY=sua_chave_deepseek  
-# PDF_SERVICES_CLIENT_ID=sua_chave_adobe
-# PDF_SERVICES_CLIENT_SECRET=sua_secret_adobe
+4.  **Execute a Aplicação:**
+    * **Terminal 1 (Backend):**
+        ```bash
+        cd Backend
+        python app.py
+        ```
+    * **Terminal 2 (Frontend):**
+        ```bash
+        cd Frontend
+        python -m http.server 8000
+        ```
+    Acesse `http://localhost:8000` no seu navegador.
 
-# Execute o backend
-python app.py
-
-# Frontend (em outro terminal)
-cd Frontend
-python -m http.server 8000
+## 📜 Licença
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.

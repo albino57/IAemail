@@ -10,7 +10,7 @@ async function analyzeEmail() {
     resultDiv.classList.remove('hidden');
 
     try { //Envia o texto para o backend
-        const response = await fetch('http://localhost:5000/analyze', {
+        const response = await fetch('https://rafaelalbinoia-iaemail-huggingface.hf.space/analyze', {
             method: 'POST',     //Método HTTP POST (para enviar dados).
             headers: {
                 'Content-Type': 'application/json', //Avisa que está mandando JSON.
@@ -54,7 +54,7 @@ async function handleFileUpload(files) {
 
     try {
         //Envia o arquivo para o backend processar
-        const response = await fetch('http://localhost:5000/analyze_file', {
+        const response = await fetch('https://rafaelalbinoia-iaemail-huggingface.hf.space/analyze_file', {
             method: 'POST',
             body: formData   // Não setar 'Content-Type'! O browser faz isso automaticamente.
         });
